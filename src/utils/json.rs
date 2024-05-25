@@ -14,7 +14,7 @@ pub fn read_json<T: AsRef<Path>>(path: T) -> Result<Value> {
     Ok(from_reader(json_reader)?)
 }
 
-pub fn write_json<T: Serialize, U: AsRef<Path>>(path: U, value: T) -> Result<()> {
+pub fn write_json<T: AsRef<Path>, U: Serialize>(path: T, value: U) -> Result<()> {
     let path = path.as_ref();
     let mut file = if !path.exists() {
         let dir = PathBuf::from(path);
